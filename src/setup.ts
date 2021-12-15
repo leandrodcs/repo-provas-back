@@ -1,8 +1,7 @@
 import dotenv from 'dotenv';
 
 // eslint-disable-next-line no-multi-assign
-let path = process.env.NODE_ENV = '.env.test';
-if (process.env.NODE_ENV === 'production') path = '.env';
-if (process.env.NODE_ENV === 'dev') path = '.env.dev';
+// eslint-disable-next-line no-nested-ternary
+const path = process.env.NODE_ENV === 'test' ? '.env.test' : process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env';
 
 dotenv.config({ path });
