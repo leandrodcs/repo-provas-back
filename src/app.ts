@@ -5,7 +5,7 @@ import 'reflect-metadata';
 import connectDatabase from './database';
 import * as userController from './controllers/userController';
 import serverMiddlewareError from './middlewares/serverMiddlewareError';
-import checkHealth from './controllers/healthController';
+import * as healthController from './controllers/healthController';
 
 const app = express();
 app.use(cors());
@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.get('/users', userController.getUsers);
 
-app.get('/health', checkHealth);
+app.get('/health', healthController.checkHealth);
 
 app.use(serverMiddlewareError);
 
