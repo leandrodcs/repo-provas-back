@@ -3,15 +3,15 @@ import express from 'express';
 import cors from 'cors';
 import 'reflect-metadata';
 import connectDatabase from './database';
-import * as userController from './controllers/userController';
 import serverMiddlewareError from './middlewares/serverMiddlewareError';
 import * as healthController from './controllers/healthController';
+import * as teacherController from './controllers/teacherController';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/users', userController.getUsers);
+app.get('/teachers/:courseId', teacherController.listCourseTeachers);
 
 app.get('/health', healthController.checkHealth);
 
