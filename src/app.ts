@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/teachers/:courseId', teacherController.listCourseTeachers);
+app.get('/teachers', teacherController.listCourseTeachers);
 
 app.get('/health', healthController.checkHealth);
 
