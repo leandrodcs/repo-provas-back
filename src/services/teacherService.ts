@@ -1,11 +1,11 @@
 import * as teacherRepository from '../repositories/teacherRepository';
 
-async function listCourseTeachers() {
-    const teachers = await teacherRepository.listCourseTeachers();
+async function listTeachers() {
+    const teachers = await teacherRepository.listTeachers();
 
     return teachers;
 }
 
 export {
-    listCourseTeachers,
+    listTeachers,
 };

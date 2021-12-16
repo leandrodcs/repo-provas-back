@@ -6,12 +6,14 @@ import connectDatabase from './database';
 import serverMiddlewareError from './middlewares/serverMiddlewareError';
 import * as healthController from './controllers/healthController';
 import * as teacherController from './controllers/teacherController';
+import * as subjectController from './controllers/subjectController';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/teachers', teacherController.listCourseTeachers);
+app.get('/teachers', teacherController.listTeachers);
+app.get('/subjects', subjectController.listSubjects);
 
 app.get('/health', healthController.checkHealth);
 

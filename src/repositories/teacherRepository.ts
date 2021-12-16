@@ -1,12 +1,12 @@
 import { getRepository } from 'typeorm';
 import Teacher from '../entities/Teacher';
 
-async function listCourseTeachers() {
+async function listTeachers() {
     const teachers = await getRepository(Teacher).find();
 
     return teachers;
 }
 
 export {
-    listCourseTeachers,
+    listTeachers,
 };
