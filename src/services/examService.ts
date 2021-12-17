@@ -6,6 +6,13 @@ async function getExamsByTeacher(teacherId: number) {
     return result;
 }
 
+async function getExamsBySubject(subjectId: number) {
+    const result = await examRepository.getExamsBySubject(subjectId);
+
+    return result;
+}
+
 export {
     getExamsByTeacher,
+    getExamsBySubject,
 };

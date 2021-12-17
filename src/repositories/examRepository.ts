@@ -3,8 +3,17 @@ import Exam from '../entities/Exam';
 
 async function getExamsByTeacher(teacherId: number) {
     const result = await getRepository(Exam).find({
-        relations: ['teacher'],
+        relations: ['teacher', 'subject'],
         where: { teacherId },
+    });
+
+    return result;
+}
+
+async function getExamsBySubject(subjectId: number) {
+    const result = await getRepository(Exam).find({
+        relations: ['teacher', 'subject'],
+        where: { subjectId },
     });
 
     return result;
@@ -12,4 +21,5 @@ async function getExamsByTeacher(teacherId: number) {
 
 export {
     getExamsByTeacher,
+    getExamsBySubject,
 };
