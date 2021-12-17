@@ -1,10 +1,15 @@
 import { getRepository } from 'typeorm';
-import Teacher from '../entities/Teacher';
+import Course from '../entities/Course';
 
-async function listTeachers() {
-    const teachers = await getRepository(Teacher).find();
+async function listTeachers(courseId: number) {
+    const result = await getRepository(Course).find({
+        relations: ['teachers'],
+        where: { id: courseId },
+    });
 
-    return teachers;
+    const teachers = result.map((teacher) => teacher.getTeachers());
+
+    return teachers[0];
 }
 
 export {

@@ -4,7 +4,6 @@ import cors from 'cors';
 import 'reflect-metadata';
 import connectDatabase from './database';
 import serverMiddlewareError from './middlewares/serverMiddlewareError';
-import * as healthController from './controllers/healthController';
 import * as teacherController from './controllers/teacherController';
 import * as subjectController from './controllers/subjectController';
 
@@ -12,10 +11,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/teachers', teacherController.listTeachers);
-app.get('/subjects', subjectController.listSubjects);
+app.get('/teachers/:courseId', teacherController.listTeachers);
+app.get('/subjects/:courseId', subjectController.listSubjects);
 
-app.get('/health', healthController.checkHealth);
+app.get('/health', (req, res) => {
+    res.sendStatus(200);
+});
 
 app.use(serverMiddlewareError);
 

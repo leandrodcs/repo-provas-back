@@ -1,5 +1,6 @@
 // eslint-disable-next-line object-curly-newline
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToMany } from 'typeorm';
+import Course from './Course';
 import Period from './Period';
 
 @Entity('subjects')
@@ -16,4 +17,7 @@ export default class Subject {
     @OneToOne(() => Period, { eager: true })
     @JoinColumn({ name: 'period_id' })
         period: Period;
+
+    @ManyToMany(() => Course, (course) => course.subjects)
+        courses: Course[];
 }
