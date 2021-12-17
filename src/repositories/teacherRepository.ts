@@ -7,6 +7,8 @@ async function listTeachers(courseId: number) {
         where: { id: courseId },
     });
 
+    if (!result.length) return [];
+
     const teachers = result.map((teacher) => teacher.getTeachers());
 
     return teachers[0];

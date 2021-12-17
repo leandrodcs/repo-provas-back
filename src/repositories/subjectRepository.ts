@@ -7,6 +7,8 @@ async function listSubjects(courseId: number) {
         where: { id: courseId },
     });
 
+    if (!result.length) return [];
+
     const subjects = result.map((subject) => subject.getSubjects());
 
     return subjects[0];
