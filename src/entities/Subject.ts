@@ -11,9 +11,6 @@ export default class Subject {
     @Column()
         name: string;
 
-    @Column({ name: 'period_id' })
-        periodId: number;
-
     @OneToOne(() => Period, { eager: true })
     @JoinColumn({ name: 'period_id' })
         period: Period;
