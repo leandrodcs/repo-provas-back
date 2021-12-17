@@ -19,7 +19,14 @@ async function getExamsBySubject(subjectId: number) {
     return result;
 }
 
+async function getAllExams() {
+    const result = await getRepository(Exam).find();
+
+    return result;
+}
+
 export {
     getExamsByTeacher,
     getExamsBySubject,
+    getAllExams,
 };
