@@ -3,6 +3,6 @@ import * as examController from '../controllers/examController';
 
 const router = express.Router();
 
-router.get('', examController.getExamsByTeacher);
+router.get('/:teacherId', examController.getExamsByTeacher);
 
 export default router;
