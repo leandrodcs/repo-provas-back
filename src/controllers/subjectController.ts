@@ -6,6 +6,10 @@ async function listSubjects(req: Request, res: Response, next: NextFunction) {
         courseId,
     } = req.params;
     try {
+        if (!courseId || Number(courseId) <= 0) {
+            return res.status(400).send('Insira um número inteiro maior que 0');
+        }
+
         const subjects = await subjectService.listSubjects(Number(courseId));
         res.status(200).send(subjects);
     } catch (error) {
