@@ -17,6 +17,20 @@ async function listSubjects(req: Request, res: Response, next: NextFunction) {
     }
 }
 
+async function listSubjectTeachers(req: Request, res: Response, next: NextFunction) {
+    const {
+        subjectId,
+    } = req.params;
+    try {
+        const subjectTeachers = await subjectService.listSubjectTeachers(Number(subjectId));
+
+        res.status(200).send(subjectTeachers);
+    } catch (error) {
+        next(error);
+    }
+}
+
 export {
     listSubjects,
+    listSubjectTeachers,
 };

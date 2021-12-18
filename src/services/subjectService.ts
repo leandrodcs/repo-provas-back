@@ -17,6 +17,13 @@ async function listSubjects(courseId: number) {
     return subjects;
 }
 
+async function listSubjectTeachers(subjectId: number) {
+    const result = await subjectRepository.listSubjectTeachers(subjectId);
+
+    return result;
+}
+
 export {
     listSubjects,
+    listSubjectTeachers,
 };
