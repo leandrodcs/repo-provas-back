@@ -1,3 +1,4 @@
+import { NewExam } from '../interfaces/newExam';
 import * as examRepository from '../repositories/examRepository';
 
 async function getExamsByTeacher(teacherId: number) {
@@ -12,7 +13,12 @@ async function getExamsBySubject(subjectId: number) {
     return result;
 }
 
+async function createExam(newExam: NewExam) {
+    await examRepository.createExam(newExam);
+}
+
 export {
     getExamsByTeacher,
     getExamsBySubject,
+    createExam,
 };

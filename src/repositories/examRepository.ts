@@ -1,5 +1,6 @@
-import { getRepository } from 'typeorm';
+import { getConnection, getRepository } from 'typeorm';
 import Exam from '../entities/Exam';
+import { NewExam } from '../interfaces/newExam';
 
 async function getExamsByTeacher(teacherId: number) {
     const result = await getRepository(Exam).find({
@@ -25,8 +26,19 @@ async function getAllExams() {
     return result;
 }
 
+async function createExam(newExam: NewExam) {
+    await getConnection()
+        .createQueryBuilder()
+        .insert()
+        .into(Exam)
+        .values(newExam)
+        .execute();
+    return newExam;
+}
+
 export {
     getExamsByTeacher,
     getExamsBySubject,
     getAllExams,
+    createExam,
 };
