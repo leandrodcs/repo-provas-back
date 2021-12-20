@@ -27,6 +27,11 @@ describe('GET /categories', () => {
 });
 
 describe('GET /subjects/courseId', () => {
+    it('should return status 400', async () => {
+        const response = await supertest(app).get('/subjects/a');
+        expect(response.status).toEqual(400);
+    });
+
     it('should return status 200', async () => {
         const response = await supertest(app).get('/subjects/1');
         expect(response.status).toEqual(200);
@@ -34,6 +39,11 @@ describe('GET /subjects/courseId', () => {
 });
 
 describe('GET /subjects/subjectId/teachers', () => {
+    it('should return status 400', async () => {
+        const response = await supertest(app).get('/subjects/a/teachers');
+        expect(response.status).toEqual(400);
+    });
+
     it('should return status 200', async () => {
         const response = await supertest(app).get('/subjects/1/teachers');
         expect(response.status).toEqual(200);
@@ -41,6 +51,11 @@ describe('GET /subjects/subjectId/teachers', () => {
 });
 
 describe('GET /teachers/courseId', () => {
+    it('should return status 400', async () => {
+        const response = await supertest(app).get('/teachers/a');
+        expect(response.status).toEqual(400);
+    });
+
     it('should return status 200', async () => {
         const response = await supertest(app).get('/teachers/1');
         expect(response.status).toEqual(200);
