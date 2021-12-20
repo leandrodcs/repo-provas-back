@@ -30,7 +30,7 @@ async function createExam(req: Request, res: Response, next: NextFunction) {
     try {
         const checkValidation = validadeExam(req.body);
 
-        if (checkValidation) res.status(400).send(checkValidation);
+        if (checkValidation) return res.status(400).send(checkValidation);
 
         await examService.createExam(req.body);
 

@@ -20,6 +20,7 @@
     "joi": "^17.5.0",
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
+    "ts-jest": "^27.1.2",
     "typeorm": "^0.2.41"
   },
   "devDependencies": {
