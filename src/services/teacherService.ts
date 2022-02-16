@@ -5,16 +5,20 @@ async function listTeachers(courseId: number) {
     const result = await teacherRepository.listTeachers(courseId);
 
     const exams = await examRepository.getAllExams();
-    const teachers = [];
+    const hashExams: any = {};
 
-    for (let i = 0; i < result.length; i++) {
-        teachers.push({
-            ...result[i],
-            examCount: exams.filter((exam) => exam.teacherId === result[i].id).length,
-        });
-    }
+    exams.forEach((exam) => {
+        if (!hashExams[exam.teacherId]) {
+            hashExams[exam.teacherId] = 1;
+        } else {
+            hashExams[exam.teacherId]++;
+        }
+    });
 
-    return teachers;
+    return result.map((r) => ({
+        ...r,
+        examCount: hashExams[r.id],
+    }));
 }
 
 export {
