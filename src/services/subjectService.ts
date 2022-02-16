@@ -5,16 +5,21 @@ async function listSubjects(courseId: number) {
     const result = await subjectRepository.listSubjects(courseId);
 
     const exams = await examRepository.getAllExams();
-    const subjects = [];
 
-    for (let i = 0; i < result.length; i++) {
-        subjects.push({
-            ...result[i],
-            examCount: exams.filter((exam) => exam.subjectId === result[i].id).length,
-        });
-    }
+    const hashExams: any = {};
 
-    return subjects;
+    exams.forEach((exam) => {
+        if (!hashExams[exam.subjectId]) {
+            hashExams[exam.subjectId] = 1;
+        } else {
+            hashExams[exam.subjectId]++;
+        }
+    });
+
+    return result.map((r) => ({
+        ...r,
+        examCount: hashExams[r.id] || 0,
+    }));
 }
 
 async function listSubjectTeachers(subjectId: number) {

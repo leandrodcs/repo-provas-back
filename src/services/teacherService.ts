@@ -17,7 +17,7 @@ async function listTeachers(courseId: number) {
 
     return result.map((r) => ({
         ...r,
-        examCount: hashExams[r.id],
+        examCount: hashExams[r.id] || 0,
     }));
 }
 
