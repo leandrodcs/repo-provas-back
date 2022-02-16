@@ -13,6 +13,9 @@ async function listTeachers(req: Request, res: Response, next: NextFunction) {
         const teachers = await teacherService.listTeachers(Number(courseId));
         res.status(200).send(teachers);
     } catch (error) {
+        if (error.name === 'NotFoundError') {
+            return res.status(404).send(error.message);
+        }
         next(error);
     }
 }
