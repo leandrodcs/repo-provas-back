@@ -7,6 +7,9 @@ async function listCourses(req: Request, res: Response, next: NextFunction) {
 
         res.status(200).send(courses);
     } catch (error) {
+        if (error.name === 'NotFoundError') {
+            return res.status(404).send(error.message);
+        }
         next(error);
     }
 }

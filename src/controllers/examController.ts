@@ -10,6 +10,9 @@ async function getExamsByTeacher(req: Request, res: Response, next: NextFunction
         const exams = await examService.getExamsByTeacher(Number(teacherId));
         res.status(200).send(exams);
     } catch (error) {
+        if (error.name === 'NotFoundError') {
+            return res.status(404).send(error.message);
+        }
         next(error);
     }
 }
@@ -22,6 +25,9 @@ async function getExamsBySubject(req: Request, res: Response, next: NextFunction
         const exams = await examService.getExamsBySubject(Number(subjectId));
         res.status(200).send(exams);
     } catch (error) {
+        if (error.name === 'NotFoundError') {
+            return res.status(404).send(error.message);
+        }
         next(error);
     }
 }

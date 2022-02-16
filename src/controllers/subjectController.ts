@@ -13,6 +13,9 @@ async function listSubjects(req: Request, res: Response, next: NextFunction) {
         const subjects = await subjectService.listSubjects(Number(courseId));
         res.status(200).send(subjects);
     } catch (error) {
+        if (error.name === 'NotFoundError') {
+            return res.status(404).send(error.message);
+        }
         next(error);
     }
 }
@@ -30,6 +33,9 @@ async function listSubjectTeachers(req: Request, res: Response, next: NextFuncti
 
         res.status(200).send(subjectTeachers);
     } catch (error) {
+        if (error.name === 'NotFoundError') {
+            return res.status(404).send(error.message);
+        }
         next(error);
     }
 }
